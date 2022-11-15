@@ -1,5 +1,5 @@
 '''
-requires pygame
+requires pygame (pip install pygame)
 wordle clone, never finished but it works just fine
 '''
 import math as m
