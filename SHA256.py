@@ -1,8 +1,9 @@
 '''
 Enter a string to be hashed
 Output: SHA256 hash of your string
-Certain special characters like ş don't work, because of complications with the ord() python function, 
+Non-ASCII characters like ş and ö don't work, because of complications with the ord() python function, 
 I could not get it to decode to utf-8 even though it should be able to with an extra parameter, I never figured it out
+Sadly doesn't generate primes and finds their cube roots for the initial constants, python float precision was unfortunately not precise enough
 '''
 def generate_primes(kaç):
     pr = [2, 3, 5, 7]
