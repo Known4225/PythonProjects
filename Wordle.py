@@ -1,5 +1,7 @@
 '''
 requires pygame (pip install pygame)
+also uses a ton of assets that i haven't provided because oops, and uses filepath names because i'm dumb
+so it won't actually work if you download it, but it's the thought that counts
 wordle clone, never finished but it works just fine
 '''
 import math as m
