@@ -11,7 +11,10 @@ class turtleTools():
 
     Commands:
     getMouseCoords() - returns the coordinates of the mouse in two separate floats x then y
-    mouseDown() - returns a boolean True if the LMB is being clicked and False otherwise, this can be configured to include RMB if needed
+    mouseDown() - returns a boolean True if the LMB is being clicked and False otherwise
+    mouseDownRight() - returns a boolean True of the RMB is being clicked and False otherwise
+    mouseDownMid() - returns a boolean True if the Middle mouse button is being clicked and False otherwise
+    mouseWheel() - returns a number of how much the mouse has scrolled between this check and the last
     keyPressed(key) - returns a boolean True if the key (character) input is being held down and False otherwise. This uses tkinter event.char in lookup
     realign() - this method attempts to realign the mouse coordinates with the window coordinates. It does this by resizing the window.
     '''
@@ -32,6 +35,8 @@ class turtleTools():
         self.screenheight = self.cv.winfo_screenheight()
         self.initwidth = self.cv.winfo_width()
         self.initheight = self.cv.winfo_height()
+        self.width = self.cv.winfo_width()
+        self.height = self.cv.winfo_height()
         self.xmin = xmin
         self.ymin = ymin
         self.xmax = xmax
@@ -43,8 +48,16 @@ class turtleTools():
         self.wasmaxed = 0
         self.resized = 0
         self.clicked = False
+        self.clicked2 = False
+        self.clicked3 = False
+        self.scroll = 0
         self.cv.bind('<Button-1>', self.mouse)
         self.cv.bind('<Button1-ButtonRelease>', self.release)
+        self.cv.bind('<Button-3>', self.mouse2)
+        self.cv.bind('<Button3-ButtonRelease>', self.release2)
+        self.cv.bind('<Button-2>', self.mouse3)
+        self.cv.bind('<Button2-ButtonRelease>', self.release3)
+        self.cv.bind('<MouseWheel>', self.wheel)
         self.keyNum = keynum
         self.cv.bind('<KeyPress>', self.keyPress)
         self.cv.bind('<KeyRelease>', self.keyRelease)
@@ -88,10 +101,30 @@ class turtleTools():
         self.resized = 2
     def mouse(self, event):
         self.clicked = True
+    def mouse2(self, event):
+        self.clicked2 = True
+    def mouse3(self, event):
+        self.clicked3 = True
     def release(self, event):
         self.clicked = False
+    def release2(self, event):
+        self.clicked2 = False
+    def release3(self, event):
+        self.clicked3 = False
     def mouseDown(self):
         return self.clicked
+    def mouseDownRight(self):
+        return self.clicked2
+    def mouseDownMid(self):
+        return self.clicked3
+    def mouseDownMiddle(self):
+        return self.clicked3
+    def wheel(self, event):
+        self.scroll += event.delta / 120
+    def mouseWheel(self):
+        temp = self.scroll
+        self.scroll = 0
+        return temp
     def keyPressed(self, key):
         if key in self.keys:
             return True
