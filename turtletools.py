@@ -1,5 +1,5 @@
 class turtleTools():
-    '''
+    r'''
     This is a helper module for turtle projects
     Requires turtle to be imported as t
     Requires a canvas (t.setup()), and coordinate minimums and maximums as initial arguments
