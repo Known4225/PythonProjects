@@ -5,7 +5,7 @@ class turtleTools():
     Requires a canvas (t.setup()), and coordinate minimums and maximums as initial arguments
     Anytime the coordinates change or the screen resolution changes, you must reinitialize the module
     If the mouse coordinates are off, you can use turtletools.realign() to put them back in place (this is a last resort)
-    Key presses use tkinter event.char in lookup (a space is ' ', a shift is ', tab is \t')
+    Key presses use tkinter event.char in lookup (a space is ' ', a shift is '', tab is '\t')
     Display turtleTools.keys while pressing a key to display the associated event.char
     If you would like more control, initialize turtools with an extra 'True' at the end of the initial arguments to activate KEYNUM mode
 
