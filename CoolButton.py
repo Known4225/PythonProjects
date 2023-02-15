@@ -9,7 +9,7 @@ import math as m
 t.setup(960, 720)
 t.colormode(255)
 t.title("CoolButton")
-tps = 30
+tps = 60
 turtools = turtleTools(t.getcanvas(), -240, -180, 240, 180, True)
 class button:
     def __init__ (self, x, y, size=20, wide=2, text=""):
