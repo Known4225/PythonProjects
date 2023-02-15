@@ -30,9 +30,8 @@ class button:
 
         self.sp = t.Turtle()
         self.sp.hideturtle()
-        self.circ = (2 * self.wide + m.pi * 1.25) * self.size
         self.straight = self.wide * self.size
-        self.proportion = self.straight / self.circ
+        self.proportion = self.straight / ((2 * self.wide + m.pi * 1.25) * self.size)
         self.mouseType = 0
         self.ani1Frames = 0
         self.ani2Frames = 0
