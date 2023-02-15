@@ -26,7 +26,7 @@ class button:
         self.wide = wide
         self.ani1speed = 1
         self.ani2speed = 1
-        self.circPrez = 24
+        self.circPrez = 45
 
         self.sp = t.Turtle()
         self.sp.hideturtle()
