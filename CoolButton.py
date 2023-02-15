@@ -16,8 +16,8 @@ class button:
         # configurable controls
         t.Screen().bgcolor(39, 39, 39)
         self.buttonColor = (50, 50, 50)
-        self.ring1Color = (0, 0, 0)
-        self.ring2Color = (80, 80, 80)
+        self.ring1Color = (80, 80, 80)
+        self.ring2Color = (0, 0, 0)
         self.textColor = (150, 150, 150)
         self.buttonText = text
         self.x = x
@@ -26,7 +26,7 @@ class button:
         self.wide = wide
         self.ani1speed = 1
         self.ani2speed = 1
-        self.circPrez = 18
+        self.circPrez = 24
 
         self.sp = t.Turtle()
         self.sp.hideturtle()
@@ -81,11 +81,11 @@ class button:
             return False
     def animation1(self, frame, vert1, vert2):
         self.sp.pencolor(self.ring1Color[0], self.ring1Color[1], self.ring1Color[2])
-        self.sp.pensize(self.size * 0.5)
+        self.sp.pensize(self.size * 0.1)
         self.animationShell(frame, vert1, vert2)
     def animation2(self, frame, vert1, vert2):
         self.sp.pencolor(self.ring2Color[0], self.ring2Color[1], self.ring2Color[2])
-        self.sp.pensize(self.size * 0.1)
+        self.sp.pensize(self.size * 0.5)
         self.animationShell(frame, vert1, vert2)
     def animationShell(self, frame, vert1, vert2): #optimize the math
         vfac = (vert1 - 0.5) * 2
