@@ -24,8 +24,8 @@ class button:
         self.y = y
         self.size = size
         self.wide = wide
-        self.ani1speed = 1
-        self.ani2speed = 1
+        self.ani1Speed = 1
+        self.ani2Speed = 1
         self.circPrez = 45
 
         self.sp = t.Turtle()
@@ -46,18 +46,18 @@ class button:
             if turtools.mouseDown():
                 self.mouseType = 10
             if self.ani1Frames < 14:
-                self.ani1Frames += self.ani1speed
+                self.ani1Frames += self.ani1Speed
         else:
             if self.ani1Frames > 0:
-                self.ani1Frames -= self.ani1speed
+                self.ani1Frames -= self.ani1Speed
         if self.mouseType > 0:
             if self.ani2Frames < 14:
-                self.ani2Frames += self.ani2speed
+                self.ani2Frames += self.ani2Speed
             else:
                 self.mouseType -= 1
         else:
             if self.ani2Frames > 0:
-                self.ani2Frames -= self.ani2speed
+                self.ani2Frames -= self.ani2Speed
         self.animation1(self.ani1Frames, False, True)
         self.animation2(self.ani2Frames, True, True)
         self.sp.pencolor(self.textColor[0], self.textColor[1], self.textColor[2])
