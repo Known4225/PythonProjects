@@ -17,7 +17,7 @@ class button:
         t.Screen().bgcolor(39, 39, 39)
         self.buttonColor = (50, 50, 50)
         self.ring1Color = (0, 0, 0)
-        self.ring2Color = (50, 50, 50)
+        self.ring2Color = (80, 80, 80)
         self.textColor = (150, 150, 150)
         self.buttonText = text
         self.x = x
