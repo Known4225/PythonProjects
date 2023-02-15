@@ -9,10 +9,10 @@ import math as m
 t.setup(960, 720)
 t.colormode(255)
 t.title("CoolButton")
-tps = 60
+tps = 30
 turtools = turtleTools(t.getcanvas(), -240, -180, 240, 180, True)
 class button:
-    def __init__ (self, x, y, size=20, wide=2, text = ""):
+    def __init__ (self, x, y, size=20, wide=2, text=""):
         # configurable controls
         t.Screen().bgcolor(39, 39, 39)
         self.buttonColor = (50, 50, 50)
@@ -31,7 +31,6 @@ class button:
         self.sp = t.Turtle()
         self.sp.hideturtle()
         self.circ = (2 * self.wide + m.pi * 1.25) * self.size
-        # print("circumfrence = ", self.circ)
         self.straight = self.wide * self.size
         self.proportion = self.straight / self.circ
         self.mouseType = 0
@@ -40,12 +39,9 @@ class button:
         t.setworldcoordinates(-240, -180, 240, 180)
         self.sp.penup()
     def tick(self):
-        # t.setworldcoordinates(-240, -180, 240, 180)
-        t.Screen().update()
         self.sp.clear()
-        self.mx, self.my = turtools.getMouseCoords()
+        self.mx, self.my = turtools.getMouseCoords(False)
         self.drawButton()
-        # print(self.isTouchingMouse())
         if self.isTouchingMouse():
             if turtools.mouseDown():
                 self.mouseType = 10
@@ -67,6 +63,7 @@ class button:
         self.sp.pencolor(self.textColor[0], self.textColor[1], self.textColor[2])
         self.sp.goto(self.x, self.y - 19)
         self.sp.write(self.buttonText, move=False, align='center', font=('Calibri', 50))
+        t.Screen().update()
     def drawButton(self):
         self.sp.pencolor(self.buttonColor[0], self.buttonColor[1], self.buttonColor[2])
         self.sp.pensize(self.size * 5)
@@ -74,7 +71,7 @@ class button:
         self.sp.pendown()
         self.sp.goto(self.x + self.size * self.wide, self.y)
         self.sp.penup()
-    def isTouchingMouse(self):
+    def isTouchingMouse(self): #need a better approximation
         if self.mx >= (self.x - (self.wide + 1.25) * self.size) and self.mx <= (self.x + (self.wide + 1.25) * self.size) and self.my >= (self.y - self.size * 1.25) and self.my <= (self.y + self.size * 1.25):
             return True
         else:
@@ -100,13 +97,9 @@ class button:
             if frameset > 1 - self.proportion:
                 for i in range(self.circPrez + 1):
                     self.sp.goto(self.x + self.straight + self.size * 1.25 * m.sin(m.radians(i * angle)), self.y + self.size * vfac * 1.25 * m.cos(m.radians(i * angle)))
-                # print((frameset - (1 - self.proportion)))
                 self.sp.goto(self.x + self.straight - self.straight * (frameset - (1 - self.proportion)) / self.proportion, self.y - vfac * 1.25 * self.size)
             else:
-                # print("frameset: ", frameset)
-                # print("proportion: ", self.proportion)
                 theta = self.circPrez * ((frameset - self.proportion) / (1 - 2 * self.proportion))
-                # print(theta)
                 for i in range(round(theta)):
                     self.sp.goto(self.x + self.straight + self.size * 1.25 * m.sin(m.radians(i * angle)), self.y + self.size * vfac * 1.25 * m.cos(m.radians(i * angle)))
                 self.sp.goto(self.x + self.straight + self.size * 1.25 * m.sin(m.radians(theta * angle)), self.y + self.size * vfac * 1.25 * m.cos(m.radians(theta * angle)))
@@ -121,13 +114,9 @@ class button:
             if frameset > 1 - self.proportion:
                 for i in range(self.circPrez + 1):
                     self.sp.goto(self.x - self.straight - self.size * 1.25 * m.sin(m.radians(i * angle)), self.y + self.size * vfac2 * 1.25 * m.cos(m.radians(i * angle)))
-                # print((frameset - (1 - self.proportion)))
                 self.sp.goto(self.x - self.straight + self.straight * (frameset - (1 - self.proportion)) / self.proportion, self.y - vfac2 * 1.25 * self.size)
             else:
-                # print("frameset: ", frameset)
-                # print("proportion: ", self.proportion)
                 theta = self.circPrez * ((frameset - self.proportion) / (1 - 2 * self.proportion))
-                # print(theta)
                 for i in range(round(theta)):
                     self.sp.goto(self.x - self.straight - self.size * 1.25 * m.sin(m.radians(i * angle)), self.y + self.size * vfac2 * 1.25 * m.cos(m.radians(i * angle)))
                 self.sp.goto(self.x - self.straight - self.size * 1.25 * m.sin(m.radians(theta * angle)), self.y + self.size * vfac2 * 1.25 * m.cos(m.radians(theta * angle)))
@@ -136,7 +125,7 @@ class button:
         self.sp.penup()
     def sigmoid(self, frame, offset):
         return 1 / (1 + m.e ** -(frame - offset))
-main = [button(-170, 150, 20, 2, "text"), button(-50, 150, 20, 1, "link"), button(120, 150, 20, 4.5, "projects")]
+main = [button(-170, 150, 20, 2, "text"), button(-50, 150, 20, 1, "link"), button(120, 150, 20, 4.5, "projects")] #you can create any buttons wherever you want (canvas is 480 by 360)
 def tick():
     for i in range(len(main)):
         main[i].tick()
