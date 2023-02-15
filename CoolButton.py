@@ -81,7 +81,7 @@ class button:
         self.animationShell(frame, vert1, vert2)
     def animation2(self, frame, vert1, vert2):
         self.sp.pencolor(self.ring2Color[0], self.ring2Color[1], self.ring2Color[2])
-        self.sp.pensize(self.size * 0.5)
+        self.sp.pensize(self.size * 0.3)
         self.animationShell(frame, vert1, vert2)
     def animationShell(self, frame, vert1, vert2): #optimize the math
         vfac = (vert1 - 0.5) * 2
