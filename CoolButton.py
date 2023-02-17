@@ -136,9 +136,13 @@ class button:
     def sigmoid(self, frame, offset):
         return 1 / (1 + m.e ** -(frame - offset))
 main = [button(-170, 150, 20, 2, "text"), button(-50, 150, 20, 1, "link"), button(120, 150, 20, 4.5, "projects")] #you can create any buttons wherever you want (canvas is 480 by 360)
+pressed = []
+for i in range(len(main)):
+    pressed.append(False)
 def tick():
     for i in range(len(main)):
         main[i].tick()
+        pressed[i] = main[i].pressed()
 if tps == 'inf' or tps == 'infinity':
     while True:
         tick()
