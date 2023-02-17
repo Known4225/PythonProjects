@@ -2,6 +2,7 @@
 Requires turtletools
 This is a cool button
 They don't do anything, but they sure look cool
+You can use button.pressed() to return True or False of whether the button is pressed or not
 '''
 import turtle as t
 from turtletools import turtleTools
@@ -33,6 +34,8 @@ class button:
         self.straight = self.wide * self.size
         self.proportion = self.straight / ((2 * self.wide + m.pi * 1.25) * self.size)
         self.mouseType = 0
+        self.mouseHover = False
+        self.press = False
         self.ani1Frames = 0
         self.ani2Frames = 0
         t.setworldcoordinates(-240, -180, 240, 180)
@@ -43,12 +46,17 @@ class button:
         self.drawButton()
         if self.isTouchingMouse():
             if turtools.mouseDown():
-                self.mouseType = 10
+                if self.mouseHover:
+                    self.mouseType = 10
+                    self.press = True
+            else:
+                self.mouseHover = True
             if self.ani1Frames < 14:
                 self.ani1Frames += self.ani1Speed
         else:
             if self.ani1Frames > 0:
                 self.ani1Frames -= self.ani1Speed
+            self.mouseHover = False
         if self.mouseType > 0:
             if self.ani2Frames < 14:
                 self.ani2Frames += self.ani2Speed
@@ -57,12 +65,15 @@ class button:
         else:
             if self.ani2Frames > 0:
                 self.ani2Frames -= self.ani2Speed
+            self.press = False
         self.animation1(self.ani1Frames, False, True)
         self.animation2(self.ani2Frames, True, True)
         self.sp.pencolor(self.textColor[0], self.textColor[1], self.textColor[2])
         self.sp.goto(self.x, self.y - 19)
         self.sp.write(self.buttonText, move=False, align='center', font=('Calibri', 50))
         t.Screen().update()
+    def pressed(self):
+        return self.press
     def drawButton(self):
         self.sp.pencolor(self.buttonColor[0], self.buttonColor[1], self.buttonColor[2])
         self.sp.pensize(self.size * 5)
